@@ -2,7 +2,7 @@ import random
 
 
 class Hero():
-    #---constructor---
+    # ---constructor---
     def __init__(self):
         self.name = "Link"
         self.hp = 100
@@ -11,7 +11,8 @@ class Hero():
         self.potion = 3
         self.focus = 0
         self.speed = random.randrange(11)
-    #---Methods---
+
+    # ---Methods---
     def heroTakeDamage(self, damage):
         self.hp -= damage
         print("Monster" + " attacks you for " + str(damage))
@@ -19,19 +20,20 @@ class Hero():
         print()
 
     def heroAttack(self):
-        #Calculate and return damage to be dealt to monster
+        # Calculate and return damage to be dealt to monster
         self.total = self.attack + (random.randrange(0, 5))
         if self.focus > 0:
             self.total = (self.total * 2 * self.focus)
+        # Set focus to 0 after it has been used in damage calculation
         self.focus = 0
         return self.total
 
     def defence(self):
-        #Allow player to pass turn and reduce incoming damage
+        # Allow player to pass turn and reduce incoming damage
         self.defend += random.randrange(2, 5)
 
     def heal(self):
-        #Allow player to heal themselves, also increases defence for a turn
+        # Allow player to heal themselves, also increases defence for a turn
         recover = 10 + random.randrange(5, 11)
         self.hp += recover
         self.potion -= 1
@@ -39,5 +41,10 @@ class Hero():
         print("You recover : " + str(recover) + " hp")
 
     def heroFocus(self):
-        #Allow player to increase next attack's damage
+        # Allow player to increase next attack's damage
         self.focus += 1
+        if self.focus > 1:
+            print("The focus starts to become a strain! You take ", (self.attack * self.focus), "damage!")
+            self.hp = self.hp - (self.attack * self.focus)
+            print("You have", str(self.hp), "hit points left")
+            print()
