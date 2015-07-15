@@ -1,5 +1,7 @@
 import unit_config
 import rooms
+
+__author__ = 'Allan'
 """
 # ---VARIABLES AND CONTROLS---
 

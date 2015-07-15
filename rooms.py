@@ -1,7 +1,8 @@
 import unit_config
 import player_controls
+import dungeon
 
-
+"""
 room = ["Main Hall. You can move north, east, or west", 3, 1, None, 8]
 unit_config.room_list.append(room)
 room = ["Dining Area. You can move north or east.", 4, None, None, 0]
@@ -20,14 +21,17 @@ room = ["Back yard. You can move south and west.", None, None, 4, 6]
 unit_config.room_list.append(room)
 room = ["Family room. You can move north and east.", 2, 0, None, None]
 unit_config.room_list.append(room)
+"""
 
 
 # Functions to check for death of monster and hero
+"""
 def is_monster_dead():
     if unit_config.monster.hp <= 0:
         print("You defeted the ", unit_config.monster.name, "!")
         # set dungeon to True to end combat loop
         unit_config.dungeon = True
+
 
 def is_hero_dead():
     if unit_config.hero.hp <= 0 and not unit_config.dungeon:
@@ -35,12 +39,17 @@ def is_hero_dead():
         # set combat loop to False and dungeon loop to False, ending the game
         unit_config.dungeon = True
         unit_config.done = True
+"""
 
-
+dungeon.dungeon(dungeon.dungeon_one)
 
 
 # ---Dungeon Loop
 def dungeon_loop():
+    """
+    started with game, will be changed later to reflect different areas
+    :return: void
+    """
     while unit_config.dungeon and not unit_config.done:
         print(unit_config.room_list[unit_config.current_room][0])
         player_input = input("Which way would you like to go?: ")
@@ -53,6 +62,10 @@ def dungeon_loop():
 
 # ---combat_loop
 def combat_loop():
+    """
+    started when a player encounters a monster
+    :rtype : void
+    """
     if not unit_config.dungeon and not unit_config.done:
         print("You encounter ", unit_config.monster.name, "!")
 
@@ -66,10 +79,14 @@ def combat_loop():
         player_controls.get_player_input(player_input)
 
         # Check to see if monster is still alive so it does not get a turn
-        is_monster_dead()
+        if unit_config.is_monster_dead():
+            unit_config.dungeon = True
+            print("You defeted the ", unit_config.monster.name, "!")
 
         # ----Monster Turn-----
         player_controls.monster_turn_check()
 
         # Check to make sure the hero is still alive
-        is_hero_dead()
+        if unit_config.is_hero_dead():
+            unit_config.done = True
+            print("The monster has defeted you!")
