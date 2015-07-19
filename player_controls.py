@@ -47,10 +47,6 @@ def dungeon_controls(player_input):
 
 # ---END DUNGEON CONTROLS---
 
-# ---MISC CONTROLS AND CHECKS(DUNGEON)
-
-# ---END MISC CONTROLS AND CHECKS(DUNGEON)
-
 
 # ---COMBAT CONTROLS---
 def get_player_input(player_input):
@@ -71,7 +67,7 @@ def get_player_input(player_input):
 
     elif player_input == "FOCUS" or player_input == "F":
         unit_config.hero.heroFocus()
-        if unit_config.is_hero_dead():
+        if unit_config.hero.heroDead():
             unit_config.done = True
             print("You have died from over charging!")
         else:
@@ -89,19 +85,3 @@ def get_player_input(player_input):
 
 # ---END COMBAT CONTROLS---
 
-
-# ---MISC GAME CONTROLS AND CHECKS (COMBAT)
-def monster_turn_check():
-    # Check to see if hero is dead from posion or overcharge
-    if unit_config.is_hero_dead():
-        pass
-    # check to make sure player made legal action and give monster a turn
-    elif unit_config.monster_turn:
-        # check that player has not defeted monster and check that player has not chosen to end game
-        if not (unit_config.is_monster_dead() or unit_config.dungeon):
-            # Deal damage to hero
-            unit_config.hero.heroTakeDamage(unit_config.monster.monsterAttack())
-            # set hero.self.defend back to 0 for future rounds of combat
-            unit_config.hero.defend = 0
-
-# ---END MISC GAME CONTROLS AND CHECKS (COMBAT)

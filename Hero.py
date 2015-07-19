@@ -48,3 +48,7 @@ class Hero():
             self.hp = self.hp - (self.attack * self.focus)
             print("You have", str(self.hp), "hit points left")
             print()
+
+    def heroDead(self):
+        if self.hp <=0:
+            return True
