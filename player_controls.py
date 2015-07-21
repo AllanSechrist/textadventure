@@ -1,5 +1,5 @@
 import unit_config
-
+import rooms
 
 # ---DUNGEON CONTROLS---
 # Perform action based on player_input
@@ -40,7 +40,7 @@ def dungeon_controls(player_input):
     elif player_input == "COMBAT" or player_input == "C":
         unit_config.dungeon = False
     # ---END DEBUG---
-    # message when player enters a non exsisting command
+    # message when player enters a non existing command
     else:
         print("Player input invalid. Please try again.")
 

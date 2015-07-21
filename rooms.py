@@ -28,6 +28,8 @@ def combat_loop():
     started when a player encounters a monster
     :rtype : void
     """
+    monster = unit_config.monster_create()
+    unit_config.monster = monster
     if not unit_config.dungeon and not unit_config.done:
         print("You encounter ", unit_config.monster.name, "!")
 
@@ -46,12 +48,23 @@ def combat_loop():
         # Check to see if monster is still alive so it does not get a turn
         if unit_config.monster.monsterDead():
             unit_config.dungeon = True
-            print("You defeted the ", unit_config.monster.name, "!")
+            print("You defeated the ", unit_config.monster.name, "!")
 
         # ----Monster Turn-----
-        unit_config.monster_turn_check()
+        # Check to see if hero is dead from poison or overcharge
+        if unit_config.hero.heroDead():
+            pass
+
+        # check to make sure player made legal action and give monster a turn
+        elif unit_config.monster_turn:
+            # check that player has not defeated monster and check that player has not chosen to end game
+            if not (unit_config.monster.monsterDead() or unit_config.dungeon):
+                # Deal damage to hero
+                unit_config.hero.heroTakeDamage(unit_config.monster.monsterAttack())
+                # set hero.self.defend back to 0 for future rounds of combat
+                unit_config.hero.defend = 0
 
         # Check to make sure the hero is still alive
         if unit_config.hero.heroDead():
             unit_config.done = True
-            print("The monster has defeted you!")
+            print("The monster has defeated you!")

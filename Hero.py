@@ -45,7 +45,7 @@ class Hero():
         self.focus += 1
         if self.focus > 1:
             print("The focus starts to become a strain! You take ", (self.attack * self.focus), "damage!")
-            self.hp = self.hp - (self.attack * self.focus)
+            self.hp -= self.attack * self.focus
             print("You have", str(self.hp), "hit points left")
             print()
 
