@@ -1,9 +1,8 @@
 import unit_config
 import player_controls
-import dungeon
-import Monster
+import game_dungeons
 
-dungeon.dungeon(dungeon.dungeon_one)
+
 
 
 # ---Dungeon Loop
@@ -12,6 +11,7 @@ def dungeon_loop():
     started with game, will be changed later to reflect different areas
     :return: void
     """
+    unit_config.room_list = game_dungeons.dungeon_one.load_dungeon()
     while unit_config.dungeon and not unit_config.done:
         print(unit_config.room_list[unit_config.current_room][0])
         player_input = input("Which way would you like to go?: ")

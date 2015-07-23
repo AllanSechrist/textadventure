@@ -3,7 +3,7 @@ import rooms
 
 __author__ = 'Allan'
 
-
+print(unit_config.room_list)
 # -------Main program loop-------
 while not unit_config.done:
     rooms.dungeon_loop()

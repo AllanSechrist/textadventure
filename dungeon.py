@@ -1,34 +1,38 @@
 import unit_config
 
 
+class Dungeon():
+    """
+    CONSTRUCTOR
+    Create a Dungeon object with a name and rooms
+    """
 
-dungeon_one = [
+    def __init__(self, name="", rooms=[]):
+        self.name = name
+        self.rooms = rooms
 
-    ["Entrance. You feel the breeze from the outside and the smell of earth fills your nose, you can only move south",
-            None, None, 1, None],
+    # CLASS METHODS
 
-    ["Room 1, you can move north or east", 0, 2, None, None],
-
-    ["Room 2, you can move south or west", None, None, 3, 1],
-
-    ["Room 3, you can move north or south", 2, None, 4, None],
-
-    ["Room 4, you can move north or east", 3, 5, None, None],
-
-    ["Room 5, you can move east or west", None, 6, None, 4],
-
-    ["Room 6, you can move north or west", 7, None, None, 5],
-
-    ["Room 7, you can move north or south", 8, None, 6, None],
-
-    ["Room 8, you can move east or south", None, 9, 7, None],
-
-    ["Room 9, you can move north or west", 10, None, None, 8],
-
-    ["Room 10, you can only move south", None, None, 9, None]
-]
+    def load_dungeon(self):
+        return self.rooms
 
 
+class Room():
+    """
+    CONSTRUCTOR
+    Create a room with the possible directions to move, items and monsters
+    """
 
-def dungeon(dungeon_number):
-    unit_config.room_list = dungeon_number
+    def __init__(self, name="", north=0, east=0, south=0, west=0, monster=False, item=False):
+        self.name = name
+        self.north = north
+        self.east = east
+        self.south = south
+        self.west = west
+        self.monster = monster
+        self.item = item
+
+    # CLASS METHODS
+
+
+#unit_config.room_list = dungeon_one.load_dungeon()
