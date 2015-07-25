@@ -1,6 +1,6 @@
 import Hero
 import Monster
-
+import dungeon
 # ---create global monster and hero
 
 def monster_create():

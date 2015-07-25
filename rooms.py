@@ -13,7 +13,7 @@ def dungeon_loop():
     """
     unit_config.room_list = game_dungeons.dungeon_one.load_dungeon()
     while unit_config.dungeon and not unit_config.done:
-        print(unit_config.room_list[unit_config.current_room][0])
+        print(unit_config.room_list[unit_config.current_room].name)
         player_input = input("Which way would you like to go?: ")
         print()
         player_input = player_input.upper()
@@ -21,6 +21,9 @@ def dungeon_loop():
         # Perform action based on player_input
         player_controls.dungeon_controls(player_input)
 
+        # Checks if there is a monster in the rooms and starts combat
+        if not unit_config.room_list[unit_config.current_room].no_monster:
+            unit_config.dungeon = False
 
 # ---combat_loop
 def combat_loop():
@@ -28,6 +31,12 @@ def combat_loop():
     started when a player encounters a monster
     :rtype : void
     """
+    # DEBUG
+    print(game_dungeons.dungeon_one.rooms)
+    for x in game_dungeons.dungeon_one.rooms:
+        print (x.name)
+    # END DEBUG
+
     monster = unit_config.monster_create()
     unit_config.monster = monster
     if not unit_config.dungeon and not unit_config.done:

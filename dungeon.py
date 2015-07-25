@@ -23,16 +23,19 @@ class Room():
     Create a room with the possible directions to move, items and monsters
     """
 
-    def __init__(self, name="", north=0, east=0, south=0, west=0, monster=False, item=False):
+    def __init__(self, name="", directions=[], no_monster=True, item=False):
         self.name = name
-        self.north = north
-        self.east = east
-        self.south = south
-        self.west = west
-        self.monster = monster
+        self.directions = directions
+        self.no_monster = no_monster
         self.item = item
 
     # CLASS METHODS
+
+    def combat(self):
+        return self.no_monster
+
+    def item(self):
+        return self.item
 
 
 #unit_config.room_list = dungeon_one.load_dungeon()

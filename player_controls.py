@@ -1,32 +1,32 @@
 import unit_config
-import rooms
+
 
 # ---DUNGEON CONTROLS---
 # Perform action based on player_input
 def dungeon_controls(player_input):
     if player_input == "NORTH" or player_input == "N":
-        next_room = unit_config.room_list[unit_config.current_room][1]
+        next_room = unit_config.room_list[unit_config.current_room].directions[0]
         if next_room is None:
             print("You can't go that way.")
         else:
             unit_config.current_room = next_room
 
     elif player_input == "EAST" or player_input == "E":
-        next_room = unit_config.room_list[unit_config.current_room][2]
+        next_room = unit_config.room_list[unit_config.current_room].directions[1]
         if next_room is None:
             print("You can't go that way.")
         else:
             unit_config.current_room = next_room
 
     elif player_input == "SOUTH" or player_input == "S":
-        next_room = unit_config.room_list[unit_config.current_room][3]
+        next_room = unit_config.room_list[unit_config.current_room].directions[2]
         if next_room is None:
             print("You can't go that way.")
         else:
             unit_config.current_room = next_room
 
     elif player_input == "WEST" or player_input == "W":
-        next_room = unit_config.room_list[unit_config.current_room][4]
+        next_room = unit_config.room_list[unit_config.current_room].directions[3]
         if next_room is None:
             print("You can't go that way.")
         else:
@@ -40,6 +40,7 @@ def dungeon_controls(player_input):
     elif player_input == "COMBAT" or player_input == "C":
         unit_config.dungeon = False
     # ---END DEBUG---
+
     # message when player enters a non existing command
     else:
         print("Player input invalid. Please try again.")
