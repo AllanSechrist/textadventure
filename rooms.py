@@ -31,11 +31,7 @@ def combat_loop():
     started when a player encounters a monster
     :rtype : void
     """
-    # DEBUG
-    print(game_dungeons.dungeon_one.rooms)
-    for x in game_dungeons.dungeon_one.rooms:
-        print (x.name)
-    # END DEBUG
+
 
     monster = unit_config.monster_create()
     unit_config.monster = monster

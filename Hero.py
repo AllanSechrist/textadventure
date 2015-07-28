@@ -16,7 +16,8 @@ class Hero():
     def heroTakeDamage(self, damage):
         self.hp -= damage
         print("Monster" + " attacks you for " + str(damage))
-        print("You have", str(self.hp), "hit points left")
+        if self.hp > 0:
+            print("You have", str(self.hp), "hit points left")
         print()
 
     def heroAttack(self):
