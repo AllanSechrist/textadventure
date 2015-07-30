@@ -1,23 +1,7 @@
 import unit_config
 
 
-class Dungeon():
-    """
-    CONSTRUCTOR
-    Create a Dungeon object with a name and rooms
-    """
-
-    def __init__(self, name="", rooms=[]):
-        self.name = name
-        self.rooms = rooms
-
-    # CLASS METHODS
-
-    def load_dungeon(self):
-        return self.rooms
-
-
-class Room():
+class Room:
     """
     CONSTRUCTOR
     Create a room with the possible directions to move, items and monsters
@@ -30,12 +14,33 @@ class Room():
         self.item = item
 
     # CLASS METHODS
-
+        # getter methods
     def combat(self):
         return self.no_monster
 
     def item(self):
         return self.item
+        # end getter methods
 
+class Dungeon:
+    """
+    CONSTRUCTOR
+    Create a Dungeon object with a name and rooms
+    """
 
-#unit_config.room_list = dungeon_one.load_dungeon()
+    def __init__(self, name="", rooms=[]):
+        self.name = name
+        self.rooms = rooms
+
+    # CLASS METHODS
+        # "getter" methods
+    def load_dungeon(self):
+        return self.rooms
+
+    def get_size(self):
+        return len(self.rooms)
+
+        # end getter methods
+
+    def add_room(self, name, directions, no_monster, item):
+        self.rooms.append(Room(name, directions, no_monster, item))
